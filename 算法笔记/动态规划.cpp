@@ -182,7 +182,31 @@ public:
 //j = 0,1,2,3,4；coins[j] = 1,2,5,7,10
 //dp[i] = getmin(dp[i - coins[j]]) + 1
 
+//解法1：
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        std::vector<int> dp;
+        for(int i = 0; i <= amount; i++){
+            dp.push_back(-1);//最初所有金额的最优解均为-1（不可达到）
+        }
+        dp[0] = 0;//金额0最优解0 递推
+        for(int i = 1; i <= amount; i++){//循环各个面值，找到dp[i]最优解
+            for(int j = 0; j < coins.size(); j++){
+                if( i - coins[j] >= 0 && dp[i - coins[j]] != -1){//前面的金额可以达到，并且包括有这种面值的钞票
+                    if(dp[i] == -1 || dp[i] > dp[i - coins[j]] + 1){
+                        dp[i] = dp[i - coins[j]] + 1;
+                    }
+                }
+            }
+        }
+        return dp[amount];
 
+    }
+};
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//例5：三角形
 
 
 
