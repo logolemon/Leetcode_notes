@@ -29,3 +29,39 @@ public:
         return LIS;
     }
 };
+
+// 解法2：
+// nums = [1, 3,2,3,1,4]
+// 1.设置一个栈(使用vector实现)，将nums[0] push栈中。
+// 2.从1至n-1遍历nums数组:
+//                  若nums[i]>栈顶:将nums[i] push至栈中。
+//                 否则:
+//                  从栈底遍历至栈顶，若遍历时，栈中元素大于等于nums[i],
+//                  使用nums[i]替换该元素，并跳出循环。
+// 3.返回栈的大小。
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        if(nums.size() == 0){
+            return 0;
+        }//如果数组为空，则返回0
+
+        std::vector<int> stack;//设置一个vector
+        stack.push_back(nums[0]);
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] > stack.back()){
+                stack.push_back(nums[i]);
+            }
+            else{
+                for(int j = 0; j < stack.size(); j++){
+                    if(stack[j] >= nums[i]){    //这里别忘记了vector元素的访问方法，这里的stack是类似于栈的vector，并不是stack，所以别一直想着 .pop(), .push_back(),这样的
+                        stack[j] = nums[i];
+                        break;
+                    }
+                }
+            }
+        }
+        return stack.size();
+    }
+};
