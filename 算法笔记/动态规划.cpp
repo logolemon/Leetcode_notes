@@ -286,6 +286,7 @@ public:
 // dp[i] = dp[j] + 1;
 // LIS为dp[0]，dp[1],……，dp[i],……,dp[n-1]中最大的。
 
+// 解法1：
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
@@ -328,6 +329,7 @@ public:
 //                  使用nums[i]替换该元素，并跳出循环。
 // 3.返回栈的大小。
 
+// 解法2：
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
@@ -402,7 +404,77 @@ public:
     }
 };
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+// 给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+// 说明：每次只能向下或者向右移动一步。
+// 思考：
+// 思考该题与例-5三角形的相似之处，如何设计动态规划算法，使得求得从左上角到右下角使得路径上的值最小的最优解?
+// 设dp[i][j]为到达位置(i,j)时的最优解(最小值):
+// dp[i][j]与dp[i-1][j]、dp[i][j-1]、grid[i][j]之间的关系是什么?动态规划的边界条件是什么?
 
+// 解法1：
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        if(grid.size() == 0){
+            return 0;
+        }
+
+        std::vector<std::vector<int>> dp;
+        for(int i = 0; i < grid.size(); i++){
+            dp.push_back(std::vector<int>());
+            for(int j = 0; j < grid[i].size(); j++){ //还是得注意这个地方的[i]，别忘记了，不然就会出现数组越界的问题！！！
+                dp[i].push_back(0);
+            }
+        }
+
+        dp[0][0] = grid[0][0];
+
+        for(int i = 1; i < grid[0].size(); i++){
+            dp[0][i] = dp[0][i-1] + grid[0][i];
+        }
+
+        for(int i = 1; i < grid.size(); i++){
+            dp[i][0] = dp[i-1][0] + grid[i][0];
+            
+            for(int j = 1; j < grid[0].size(); j++){
+                dp[i][j] = std::min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+            }
+        }
+
+        return dp[grid.size() - 1][grid[0].size() - 1];
+
+    }
+}; //12ms 10.2MB
+
+// 解法2：就构造dp[][]数组的方式不一样，这种方法清晰明了一点
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        if(grid.size() == 0){
+            return 0;
+        }
+
+        int row = grid.size();
+        int column = grid[0].size();
+        std::vector<std::vector<int>> dp(row, std::vector<int>(column,0));
+
+        dp[0][0] = grid[0][0];
+
+        for(int i = 1; i < column; i++){
+            dp[0][i] = dp[0][i-1] + grid[0][i];
+        }
+
+        for(int i = 1; i < row; i++){
+            dp[i][0] = dp[i-1][0] + grid[i][0];
+            
+            for(int j = 1; j < column; j++){
+                dp[i][j] = std::min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+            }
+        }
+        return dp[row-1][column-1];
+    }
+};  // 8ms 9.8MB
 
 
 
