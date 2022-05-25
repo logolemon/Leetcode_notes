@@ -442,7 +442,7 @@ public:
             }
         }
 
-        return dp[grid.size() - 1][grid[0].size() - 1];
+        return dp[grid.size() - 1][grid[0].size() - 1];//注意返回的不是dp[grid.size()][grid[0].size()] 是grid.size()-1;不是数组的大小，是数组大小减一，是下标！！！
 
     }
 }; //12ms 10.2MB
