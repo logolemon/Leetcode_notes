@@ -24,6 +24,8 @@ public:
 };
 
 // 解法2：双指针思路
+// 执行用时:20 ms ，在所有C++提交中击败了63.89%的用户
+// 内存消耗:18.7MB ，在所有C++提交中击败了71.49%的用户
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
