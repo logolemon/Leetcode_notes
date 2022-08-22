@@ -42,3 +42,58 @@ public:
 //第1轮，进行k/2次，每次处理2n个数字；第2轮，进行k/4次，每次处理4n个数字；
 //最后一次：进行k/（2^logk）次，每次处理2^logk*N个值，O（kNlogk）
 
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode temp_head(0);//创建一个头节点
+        ListNode *pre = &temp_head;//用一个指针指向创建好的头节点
+        while(list1 && list2){
+            if(list1->val < list2->val){//list1 和 list2 同时不空时，对他们进行比较
+                pre->next = list1;
+                list1 = list1->next;
+            }
+            else{
+                pre->next = list2;
+                list2 = list2->next; 
+            }
+            pre = pre->next;
+        }
+
+        if(list1){
+            pre->next = list1;
+        }
+        if(list2){
+            pre->next = list2;
+        }
+        return temp_head.next;     
+}
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if(lists.size() == 0){//如果lists为空，返回NULL
+            return NULL;
+        }
+        if(lists.size() == 1){//如果只有一个list，直接返回头指针
+            return lists[0];
+        }
+        if(lists.size() == 2){//如果只有两个list，调用两个list merge函数
+            return mergeTwoLists(lists[0], lists[1]);
+        }
+
+        int mid = lists.size()/2;
+
+        std::vector<ListNode*> sub1_lists;//拆分lists为两个子lists
+        std::vector<ListNode*> sub2_lists;
+        for(int i = 0; i < mid; i++){
+            sub1_lists.push_back(lists[i]);
+        }
+        for(int i = mid; i < lists.size(); i++){
+            sub2_lists.push_back(lists[i]);
+        }
+
+        ListNode *l1 = mergeKLists(sub1_lists);
+        ListNode *l2 = mergeKLists(sub2_lists);
+        
+        return mergeTwoLists(l1, l2);//分制处理
+    }
+};
+//执行用时：24ms 内存消耗：29.9MB
