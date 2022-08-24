@@ -21,6 +21,7 @@
   23. 合并K个升序链表.cpp  
 
 ## 算法笔记
-* 动态规划
-* 三道题套路解决递归问题
+* [动态规划](https://github.com/logolemon/Leetcode_notes/blob/main/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.cpp)
+* [三道题套路解决递归问题](https://github.com/logolemon/Leetcode_notes/blob/main/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E4%B8%89%E9%81%93%E9%A2%98%E8%A7%A3%E5%86%B3%E9%80%92%E5%BD%92%E9%97%AE%E9%A2%98.md)  
+
 
