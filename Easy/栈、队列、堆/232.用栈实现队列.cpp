@@ -1,4 +1,4 @@
-//双栈操作，和235题思路是一样的
+//双栈操作，和225题思路是一样的
 class MyQueue {
 public:
     MyQueue() {
