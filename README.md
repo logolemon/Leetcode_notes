@@ -24,6 +24,9 @@
 * Hard  
   138.复制带随机指针的链表.cpp  
   23. 合并K个升序链表.cpp  
+## 栈、队列、堆
+* Easy
+  225.用队列实现栈.cpp  
 
 ## 算法笔记
 * [动态规划](https://github.com/logolemon/Leetcode_notes/blob/main/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.cpp)
