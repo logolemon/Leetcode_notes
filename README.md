@@ -28,7 +28,7 @@
 * Easy  
   225.用队列实现栈.cpp  
   232.用栈实现队列.cpp  
-* Medium
+* Medium  
   115.最小栈.cpp  
 
 ## 算法笔记
