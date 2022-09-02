@@ -31,7 +31,7 @@
 * Medium  
   115.最小栈.cpp  
   pro_1363 Rails合法的出栈序列.cpp  
-* Hard
+* Hard  
   224.简单的计算器.cpp  
 
 ## 算法笔记
